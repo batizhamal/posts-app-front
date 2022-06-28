@@ -1,6 +1,6 @@
-import Lifecycle from "./../Lifecycle";
-import Home from "./../Lifecycle/Home.vue";
-import About from "./../Lifecycle/About.vue";
+import UserList from "./../UserList";
+import List from "../UserList/List.vue";
+import Info from "../UserList/Info.vue";
 import Vue from "vue";
 import VueRouter from "vue-router";
 
@@ -11,18 +11,19 @@ export default new VueRouter({
   routes: [
     {
       path: "",
-      component: Lifecycle,
+      component: UserList,
       redirect: () => {
-        return "/home";
+        return "/list";
       },
       children: [
         {
-          path: "/home",
-          component: Home,
+          path: "/list",
+          component: List,
         },
         {
-          path: "/about",
-          component: About,
+          path: "/info",
+          name: "info",
+          component: Info,
         },
       ],
     },
