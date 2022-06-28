@@ -1,6 +1,6 @@
-import UserList from "./../UserList";
-import List from "../UserList/List.vue";
-import Info from "../UserList/Info.vue";
+import Users from "./../views/Users";
+import UserList from "./../views/Users/List";
+import UserInfo from "./../views/Users/Info";
 import Vue from "vue";
 import VueRouter from "vue-router";
 
@@ -11,19 +11,19 @@ export default new VueRouter({
   routes: [
     {
       path: "",
-      component: UserList,
+      component: Users,
       redirect: () => {
         return "/list";
       },
       children: [
         {
           path: "/list",
-          component: List,
+          component: UserList,
         },
         {
-          path: "/info",
+          path: "/info/:id",
           name: "info",
-          component: Info,
+          component: UserInfo,
         },
       ],
     },
