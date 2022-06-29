@@ -1,8 +1,9 @@
+import Vue from "vue";
+import VueRouter from "vue-router";
 import Users from "./../views/Users";
 import UserList from "./../views/Users/List";
 import UserInfo from "./../views/Users/Info";
-import Vue from "vue";
-import VueRouter from "vue-router";
+import CreateUser from "./../views/Users/Create";
 
 Vue.use(VueRouter);
 
@@ -24,6 +25,11 @@ export default new VueRouter({
           path: "/info/:id",
           name: "info",
           component: UserInfo,
+        },
+        {
+          path: "/create",
+          name: "create",
+          component: CreateUser,
         },
       ],
     },

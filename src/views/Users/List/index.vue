@@ -1,14 +1,15 @@
 <template>
   <div>
     <div class="sub-nav-bar"><h2>List</h2></div>
-    <div>
-      <AppSpinner v-if="loading"></AppSpinner>
+    <AppSpinner v-if="loading"></AppSpinner>
+    <div v-else>
       <User
         v-for="user in users"
         :key="user.id"
         :user="user"
         @deleteUser="deleteUser"
       />
+      <button @click="$router.push({ name: 'create' })" class="add">Add</button>
     </div>
   </div>
 </template>
@@ -62,8 +63,17 @@ export default {
   margin-left: auto;
   margin-right: auto;
 }
-
 h2 {
   margin-top: 6px;
+}
+.add {
+  margin-top: 30px;
+  border: none;
+  background-color: rgb(35, 44, 70);
+  color: white;
+  height: 40px;
+  width: 100px;
+  font-size: 14px;
+  cursor: pointer;
 }
 </style>
