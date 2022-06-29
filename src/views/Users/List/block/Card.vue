@@ -1,25 +1,14 @@
 <template>
   <div>
-    <!-- <router-link
-      :to="{
-        path: '/info',
-        query: user,
-      }"
-      >{{ user.id }} {{ user.name }} {{ user.age }} years old</router-link
-    > -->
     <div class="user">
       <img src="../../../../assets/default-avatar.png" />
       <div class="user-name-and-link">
         <p>{{ user.name }}</p>
 
-        <button @click="onClickItem(user)">More</button>
-        <!-- <router-link
-          :to="{
-            path: '/info',
-            params: { user },
-          }"
-          >See more</router-link
-        > -->
+        <button @click="onClickItem(user)" class="more">More</button>
+        <button @click="$emit('deleteUser', user.id)" class="delete">
+          Delete
+        </button>
       </div>
     </div>
   </div>
@@ -65,12 +54,23 @@ p {
   margin-bottom: 9px;
   margin-top: 0px;
 }
-button {
+.more {
   border: none;
   background-color: rgb(189, 196, 214);
   color: black;
   height: 20px;
   width: 60px;
   cursor: pointer;
+  display: inline-block;
+}
+.delete {
+  border: none;
+  background-color: rgb(214, 89, 89);
+  color: black;
+  height: 20px;
+  width: 60px;
+  cursor: pointer;
+  display: inline-block;
+  margin-left: 10px;
 }
 </style>
