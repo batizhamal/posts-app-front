@@ -5,7 +5,7 @@
       <div class="user-name-and-link">
         <p>{{ user.name }}</p>
 
-        <button @click="onClickItem(user)" class="more">More</button>
+        <button @click="onClickItem" class="more">More</button>
         <button @click="$emit('deleteUser', user.id)" class="delete">
           Delete
         </button>
@@ -22,10 +22,10 @@ export default {
     },
   },
   methods: {
-    onClickItem(user) {
+    onClickItem() {
       this.$router.push({
         name: "info",
-        params: { id: user.id },
+        params: { id: this.user.id },
       });
     },
   },

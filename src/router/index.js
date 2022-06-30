@@ -19,6 +19,7 @@ export default new VueRouter({
       children: [
         {
           path: "/list",
+          name: "list",
           component: UserList,
         },
         {

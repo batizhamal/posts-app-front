@@ -30,15 +30,16 @@ export default {
     };
   },
   created() {
-    this.loading = true;
-
-    fetchUser(this.$route.params.id)
-      .then((result) => {
-        this.user = result;
-      })
-      .finally(() => {
-        this.loading = false;
-      });
+    // this.loading = true;
+    this.user = this.$store.getters.getUserById(this.$route.params.id);
+    // fetchUser()
+    //   .getUserById(this.$route.params.id)
+    //   .then((result) => {
+    //     this.user = result;
+    //   })
+    //   .finally(() => {
+    //     this.loading = false;
+    //   });
   },
 };
 </script>
