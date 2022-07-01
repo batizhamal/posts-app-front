@@ -9,3 +9,9 @@ export default {
   name: "App",
 };
 </script>
+
+<style>
+div {
+  font-family: sans-serif;
+}
+</style>

@@ -1,9 +1,9 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Users from "./../views/Users";
-import UserList from "./../views/Users/List";
-import UserInfo from "./../views/Users/Info";
-import CreateUser from "./../views/Users/Create";
+import PostList from "./../views/Posts/List";
+import PostInfo from "./../views/Posts/Info";
+import CreatePost from "./../views/Posts/Create";
+import store from "@/store";
 
 Vue.use(VueRouter);
 
@@ -12,27 +12,33 @@ export default new VueRouter({
   routes: [
     {
       path: "",
-      component: Users,
-      redirect: () => {
-        return "/list";
+      component: {
+        render: (c) => c("router-view"),
       },
       children: [
         {
-          path: "/list",
+          path: "/",
           name: "list",
-          component: UserList,
+          component: PostList,
         },
         {
-          path: "/info/:id",
+          path: ":id",
           name: "info",
-          component: UserInfo,
+          component: PostInfo,
+          beforeEnter(to, _, next) {
+            !idExists(to.params.id) ? next("/") : next();
+          },
         },
         {
-          path: "/create",
+          path: "new",
           name: "create",
-          component: CreateUser,
+          component: CreatePost,
         },
       ],
     },
   ],
 });
+
+const idExists = (id) => {
+  return store.state.posts.find((post) => post.id == id);
+};
