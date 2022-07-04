@@ -1,9 +1,10 @@
 <template>
   <div class="body">
+    <DeletePopup></DeletePopup>
     <div class="nav-bar"><h1>Some App</h1></div>
     <div class="sub-nav-bar"><h2>List</h2></div>
 
-    <AppSpinner v-if="loading"></AppSpinner>
+    <Loader v-if="loading"></Loader>
     <div v-else>
       <button @click="$router.push({ name: 'create' })" class="create-button">
         +
@@ -15,12 +16,14 @@
 
 <script>
 import Card from "./block/Card";
-import AppSpinner from "@/components/ui/AppSpinner.vue";
+import Loader from "@/components/ui/Loader.vue";
+import DeletePopup from "@/components/ui/DeletePopup.vue";
 
 export default {
   components: {
     Card,
-    AppSpinner,
+    Loader,
+    DeletePopup,
   },
   data() {
     return {

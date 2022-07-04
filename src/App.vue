@@ -13,5 +13,6 @@ export default {
 <style>
 div {
   font-family: sans-serif;
+  margin: 0 0;
 }
 </style>

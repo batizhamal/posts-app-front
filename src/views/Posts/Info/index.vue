@@ -3,7 +3,7 @@
     <div class="nav-bar"><h1>Some App</h1></div>
     <div class="sub-nav-bar"><h2>Post</h2></div>
     <div>
-      <AppSpinner v-if="loading"></AppSpinner>
+      <Loader v-if="loading"></Loader>
       <div v-else class="post">
         <!-- <img src="../../../assets/letter.png" /> -->
         <div class="post__id">{{ post.id }}</div>
@@ -19,10 +19,10 @@
 </template>
 
 <script>
-import AppSpinner from "@/components/ui/AppSpinner.vue";
+import Loader from "@/components/ui/Loader.vue";
 
 export default {
-  components: { AppSpinner },
+  components: { Loader },
   data() {
     return {
       post: {},

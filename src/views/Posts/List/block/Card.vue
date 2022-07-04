@@ -23,7 +23,13 @@ export default {
   },
   methods: {
     deletePost(id) {
-      this.$store.commit("deletePost", id);
+      this.$router.push({
+        query: {
+          showDeletePopup: true,
+          postId: id,
+        },
+      });
+      // this.$store.commit("deletePost", id);
       // deletePost(id);
     },
     onClickItem() {
