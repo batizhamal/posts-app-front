@@ -1,12 +1,24 @@
 <template>
   <div class="background" v-if="show">
     <div class="popup">
-      <p>
+      <div class="popup_header">
+        <p class="popup_text header">Delete post</p>
+        <button class="popup_button-close" @click="onClick(false)">X</button>
+      </div>
+      <hr class="solid" />
+      <p class="popup_text">
         Are you sure you want to delete post
-        <span style="font-weight: bold">№{{ $route.query.postId }}</span>
+        <span style="font-weight: bold">№{{ $route.query.postId }}?</span>
       </p>
-      <button @click="onClick(true)">OK</button>
-      <button @click="onClick(false)">Cancel</button>
+      <hr class="solid" />
+      <div class="buttons">
+        <button class="popup_button grey-button" @click="onClick(true)">
+          OK
+        </button>
+        <button class="popup_button red-button" @click="onClick(false)">
+          Cancel
+        </button>
+      </div>
     </div>
   </div>
 </template>
@@ -51,11 +63,83 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .background {
   background-color: rgba(0, 0, 0, 0.3);
-  position: absolute;
-  width: 100%;
-  height: 100%;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+}
+.popup {
+  width: 600px;
+  height: 150px;
+  margin: 350px auto;
+  background-color: white;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 4px rgba(0, 0, 0, 0.6);
+}
+.popup_text {
+  display: block;
+  margin: auto auto;
+  padding-left: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  text-align: left;
+}
+.popup_header {
+  display: block;
+}
+.header {
+  font-weight: bold;
+  padding-top: 10px;
+  padding-bottom: 0px;
+  margin-bottom: 3px;
+  display: inline-block;
+}
+.buttons {
+  display: block;
+  margin: auto auto;
+  margin-top: 5px;
+}
+.popup_button {
+  height: 35px;
+  width: 80px;
+  border: 2px solid transparent;
+  border-radius: 10px;
+  color: black;
+  cursor: pointer;
+  display: inline-block;
+  margin: 0 5px;
+}
+.popup_button-close {
+  margin-left: 460px;
+  display: inline-block;
+  background-color: transparent;
+  border-color: transparent;
+}
+.popup_button-close:hover {
+  border: 1px solid rgb(139, 139, 139);
+}
+.red-button {
+  background-color: rgb(214, 89, 89);
+}
+.grey-button {
+  background-color: rgb(189, 196, 214);
+}
+.red-button:hover {
+  background-color: rgb(149, 0, 0);
+  color: white;
+  transition: 0.5s;
+}
+.grey-button:hover {
+  background-color: rgb(35, 44, 70);
+  color: white;
+  transition: 0.5s;
+}
+hr.solid {
+  border-top: 1px solid rgb(211, 211, 211);
 }
 </style>

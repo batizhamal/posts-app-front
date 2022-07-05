@@ -5,7 +5,7 @@
     <div class="sub-nav-bar"><h2>List</h2></div>
 
     <Loader v-if="loading"></Loader>
-    <div v-else>
+    <div class="cards" v-else>
       <button @click="$router.push({ name: 'create' })" class="create-button">
         +
       </button>
@@ -46,7 +46,19 @@ export default {
 <style>
 .body {
   font-size: 16px;
+  overflow: hidden;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
 }
+
+.cards {
+  overflow: scroll;
+  height: 100%;
+}
+
 .nav-bar {
   background: rgb(35, 44, 70);
   color: rgb(255, 255, 255);
