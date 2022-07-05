@@ -1,3 +1,4 @@
+<!-- TODO: Make the DeletePopup's size dynamic, so that it shrinks if the screen gets smaller -->
 <template>
   <div class="background" v-if="show">
     <div class="popup">

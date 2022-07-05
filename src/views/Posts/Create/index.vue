@@ -1,3 +1,4 @@
+<!-- TODO: Make the component's size dynamic, so that it shrinks if the screen gets smaller -->
 <template>
   <div class="body">
     <div class="nav-bar"><h1>Some App</h1></div>
