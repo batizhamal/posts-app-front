@@ -28,12 +28,17 @@ export default {
   },
   methods: {
     clearQuery() {
-      const keys = Object.keys(this.$route.query);
-      if (keys.some((it) => ["showDeletePopup", "postId"].includes(it))) {
-        this.$router.push({
-          query: {},
-        });
+      const exists = Object.keys(this.$route.query).some((it) =>
+        ["showDeletePopup", "postId"].includes(it)
+      );
+
+      if (!exists) {
+        return;
       }
+
+      this.$router.push({
+        query: {},
+      });
     },
     onClick(canDelete) {
       if (canDelete) {
