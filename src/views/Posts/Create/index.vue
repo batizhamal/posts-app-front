@@ -1,8 +1,7 @@
 <template>
-  <div>
+  <div class="body">
     <div class="nav-bar"><h1>Some App</h1></div>
-    <div class="sub-nav-bar"><h2>Create a Post</h2></div>
-    <div class="body">
+    <div class="background">
       <h3>Please fill out the fields to make a post</h3>
       <form>
         <label
@@ -47,7 +46,7 @@ export default {
 </script>
 
 <style scoped>
-.body {
+.background {
   width: 800px;
   margin: 20px auto;
   background-color: rgb(233, 233, 233);

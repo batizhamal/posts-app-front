@@ -1,7 +1,6 @@
 <template>
   <div class="body">
     <div class="nav-bar"><h1>Some App</h1></div>
-    <div class="sub-nav-bar"><h2>Post</h2></div>
     <div>
       <Loader v-if="loading"></Loader>
       <div v-else class="post">

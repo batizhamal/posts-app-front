@@ -71,11 +71,15 @@ export default {
   top: 0;
   width: 100vw;
   height: 100vh;
+  z-index: 32;
 }
 .popup {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   width: 600px;
   height: 150px;
-  margin: 350px auto;
   background-color: white;
   border-radius: 8px;
   text-align: center;

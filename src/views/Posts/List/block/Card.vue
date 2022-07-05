@@ -47,13 +47,14 @@ export default {
   border-radius: 20px;
   width: 400px;
   height: 300px;
-  margin: auto auto;
-  margin-bottom: 20px;
-  padding: 10px;
+  margin: 10px 10px;
+  position: relative;
 }
 .card__buttons {
-  display: block;
-  margin: 0 110px;
+  position: absolute;
+  top: auto;
+  left: 50%;
+  transform: translateX(-50%);
 }
 .card__button {
   height: 35px;

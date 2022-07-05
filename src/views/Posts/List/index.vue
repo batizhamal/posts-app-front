@@ -2,14 +2,15 @@
   <div class="body">
     <DeletePopup></DeletePopup>
     <div class="nav-bar"><h1>Some App</h1></div>
-    <div class="sub-nav-bar"><h2>List</h2></div>
 
     <Loader v-if="loading"></Loader>
     <div class="cards" v-else>
       <button @click="$router.push({ name: 'create' })" class="create-button">
         +
       </button>
-      <Card v-for="post in $store.state.posts" :key="post.id" :post="post" />
+      <div class="flex-container">
+        <Card v-for="post in $store.state.posts" :key="post.id" :post="post" />
+      </div>
     </div>
   </div>
 </template>
@@ -68,16 +69,7 @@ export default {
   display: table;
   margin: 0 auto;
 }
-.sub-nav-bar {
-  background: rgb(233, 233, 233);
-  color: rgb(35, 44, 70);
-  height: 29px;
-  width: 100%;
-  text-align: center;
-  margin-top: -6px;
-  margin-left: auto;
-  margin-right: auto;
-}
+
 .create-button {
   cursor: pointer;
   background-color: rgb(189, 196, 214);
@@ -94,6 +86,14 @@ export default {
   background-color: rgb(35, 44, 70);
   color: white;
   transition: 0.5s;
+}
+.flex-container {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: stretch;
+  flex-basis: 200px;
+  margin-bottom: 100px;
 }
 h2 {
   margin-top: 6px;
