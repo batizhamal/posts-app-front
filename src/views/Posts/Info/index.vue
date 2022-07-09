@@ -1,6 +1,6 @@
 <template>
   <div class="body">
-    <div class="nav-bar"><h1>Some App</h1></div>
+    <div class="nav-bar"><h1>Posts</h1></div>
     <div>
       <Loader v-if="loading"></Loader>
       <div v-else class="post">

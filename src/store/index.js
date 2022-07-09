@@ -27,7 +27,7 @@ export default new Vuex.Store({
   },
   actions: {
     fetchPosts: async ({ state }) => {
-      state.posts = (await getPosts()).posts;
+      state.posts = await getPosts();
     },
 
     fetchPost: async (_, id) => {

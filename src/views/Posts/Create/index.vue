@@ -1,7 +1,7 @@
 <!-- TODO: Make the component's size dynamic, so that it shrinks if the screen gets smaller -->
 <template>
   <div class="body">
-    <div class="nav-bar"><h1>Some App</h1></div>
+    <div class="nav-bar"><h1>Posts</h1></div>
     <div class="background">
       <h3>Please fill out the fields to make a post</h3>
       <form>
@@ -36,11 +36,11 @@ export default {
   methods: {
     post() {
       this.$store.commit("addPost", { title: this.title, body: this.body });
-      // addPost({ title: this.title, body: this.body })
-      // .then(() => {})
-      // .catch((err) => console.warn(err));
+      addPost({ title: this.title, body: this.body })
+        .then(() => {})
+        .catch((err) => console.warn(err));
 
-      this.$router.push("/list");
+      this.$router.replace("/list");
     },
   },
 };

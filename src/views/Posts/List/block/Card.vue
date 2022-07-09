@@ -29,8 +29,8 @@ export default {
           postId: id,
         },
       });
-      // this.$store.commit("deletePost", id);
       // deletePost(id);
+      // this.$store.commit("deletePost", id);
     },
     onClickItem() {
       this.$router.push({

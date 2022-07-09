@@ -4,7 +4,7 @@
     <div class="popup">
       <div class="popup_header">
         <p class="popup_text header">Delete post</p>
-        <button class="popup_button-close" @click="onClick(false)">X</button>
+        <button class="popup_button-close" @click="cancel">X</button>
       </div>
       <hr class="solid" />
       <p class="popup_text">
@@ -13,18 +13,15 @@
       </p>
       <hr class="solid" />
       <div class="buttons">
-        <button class="popup_button grey-button" @click="onClick(true)">
-          OK
-        </button>
-        <button class="popup_button red-button" @click="onClick(false)">
-          Cancel
-        </button>
+        <button class="popup_button grey-button" @click="done">OK</button>
+        <button class="popup_button red-button" @click="cancel">Cancel</button>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import { deletePost } from "@/api/posts";
 export default {
   created() {
     this.clearQuery();
@@ -53,12 +50,14 @@ export default {
         query: {},
       });
     },
-    onClick(canDelete) {
-      if (canDelete) {
-        this.$store.commit("deletePost", this.$route.query.postId);
-      }
+    cancel() {
       this.show = false;
       this.clearQuery();
+    },
+    done() {
+      this.$store.commit("deletePost", this.$route.query.postId);
+      deletePost(this.$route.query.postId);
+      this.cancel();
     },
   },
 };

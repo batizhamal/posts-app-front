@@ -1,7 +1,7 @@
 <template>
   <div class="body">
     <DeletePopup></DeletePopup>
-    <div class="nav-bar"><h1>Some App</h1></div>
+    <div class="nav-bar"><h1>Posts</h1></div>
 
     <Loader v-if="loading"></Loader>
     <div class="cards" v-else>
