@@ -11,7 +11,8 @@
           <div class="post__body">{{ post.body }}</div>
         </div>
         <!-- TODO: users' id fetch to users in future -->
-        <button @click="$router.go(-1)">Go back</button>
+        <button class="grey-button" @click="$router.go(-1)">Go back</button>
+        <button class="red-button" @click="deletePost(post.id)">Delete</button>
       </div>
     </div>
   </div>
@@ -39,6 +40,18 @@ export default {
       .finally(() => {
         this.loading = false;
       });
+  },
+  methods: {
+    deletePost(id) {
+      console.log("info: inside delete post");
+      this.$router.push({
+        query: {
+          showDeletePopup: true,
+          postId: id,
+        },
+      });
+      console.log(this.$route.query);
+    },
   },
 };
 </script>
@@ -76,13 +89,23 @@ button {
   width: 80px;
   border: 2px solid transparent;
   border-radius: 10px;
-  background-color: rgb(189, 196, 214);
   color: black;
   cursor: pointer;
   display: inline-block;
-  margin-top: 30px;
-  margin-left: 0;
+  margin: 30px 20px 20px 0;
 }
+.red-button {
+  background-color: rgb(214, 89, 89);
+}
+.grey-button {
+  background-color: rgb(189, 196, 214);
+}
+.red-button:hover {
+  background-color: rgb(149, 0, 0);
+  color: white;
+  transition: 0.5s;
+}
+
 button:hover {
   background-color: rgb(35, 44, 70);
   color: white;

@@ -40,7 +40,7 @@ export default {
         .then(() => {})
         .catch((err) => console.warn(err));
 
-      this.$router.replace("/list");
+      this.$router.push("/list");
     },
   },
 };
