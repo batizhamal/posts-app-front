@@ -5,7 +5,7 @@
 <script>
 /** Обычная крутилка которая показывает что приложение обрабатывает что-либо */
 export default {
-  name: "Loader",
+  name: "AppLoader",
 };
 </script>
 

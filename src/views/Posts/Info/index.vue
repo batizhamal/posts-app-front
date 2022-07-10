@@ -2,7 +2,7 @@
   <div class="body">
     <div class="nav-bar"><h1>Posts</h1></div>
     <div>
-      <Loader v-if="loading"></Loader>
+      <AppLoader v-if="loading"></AppLoader>
       <div v-else class="post">
         <!-- <img src="../../../assets/letter.png" /> -->
         <div class="post__id">{{ post.id }}</div>
@@ -19,10 +19,10 @@
 </template>
 
 <script>
-import Loader from "@/components/ui/Loader.vue";
+import AppLoader from "@/ui/AppLoader.vue";
 
 export default {
-  components: { Loader },
+  components: { AppLoader },
   data() {
     return {
       post: {},
@@ -43,14 +43,12 @@ export default {
   },
   methods: {
     deletePost(id) {
-      console.log("info: inside delete post");
-      this.$router.push({
+      this.$router.replace({
         query: {
           showDeletePopup: true,
           postId: id,
         },
       });
-      console.log(this.$route.query);
     },
   },
 };

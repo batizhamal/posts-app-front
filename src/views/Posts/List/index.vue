@@ -1,9 +1,8 @@
 <template>
   <div class="body">
-    <DeletePopup></DeletePopup>
     <div class="nav-bar"><h1>Posts</h1></div>
 
-    <Loader v-if="loading"></Loader>
+    <AppLoader v-if="loading"></AppLoader>
     <div class="cards" v-else>
       <button @click="$router.push({ name: 'create' })" class="create-button">
         +
@@ -17,14 +16,12 @@
 
 <script>
 import Card from "./block/Card";
-import Loader from "@/components/ui/Loader.vue";
-import DeletePopup from "@/components/ui/DeletePopup.vue";
+import AppLoader from "@/ui/AppLoader.vue";
 
 export default {
   components: {
     Card,
-    Loader,
-    DeletePopup,
+    AppLoader,
   },
   data() {
     return {

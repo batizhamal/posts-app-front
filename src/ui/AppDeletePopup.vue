@@ -31,7 +31,6 @@ export default {
   }),
   watch: {
     "$route.query.showDeletePopup"(val) {
-      console.log("inside watcher:");
       if (val) {
         this.show = true;
       }
@@ -39,7 +38,6 @@ export default {
   },
   methods: {
     clearQuery() {
-      console.log("inside clear query");
       const exists = Object.keys(this.$route.query).some((it) =>
         ["showDeletePopup", "postId"].includes(it)
       );
@@ -48,18 +46,17 @@ export default {
         return;
       }
 
-      this.$router.replace({
-        path: this.$route.path,
+      this.$router.push({
+        path: "/",
         query: {},
       });
+      this.$router.go();
     },
     cancel() {
-      console.log("inside cancel");
       this.show = false;
       this.clearQuery();
     },
     done() {
-      console.log("inside done");
       this.$store.commit("deletePost", this.$route.query.postId);
       deletePost(this.$route.query.postId);
       this.cancel();

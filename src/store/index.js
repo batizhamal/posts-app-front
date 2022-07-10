@@ -16,7 +16,6 @@ export default new Vuex.Store({
         title: post.title,
         body: post.body,
       });
-      console.log(state.posts);
     },
     deletePost(state, id) {
       state.posts.splice(

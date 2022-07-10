@@ -39,6 +39,6 @@ export default new VueRouter({
   ],
 });
 
-const idExists = (id) => {
+function idExists(id) {
   return store.state.posts.find((post) => post.id == id);
-};
+}
