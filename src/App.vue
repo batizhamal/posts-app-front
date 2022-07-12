@@ -1,17 +1,17 @@
 <template>
   <div>
-    <AppDeletePopup></AppDeletePopup>
+    <DeletePopup></DeletePopup>
     <router-view></router-view>
   </div>
 </template>
 
 <script>
-import AppDeletePopup from "@/ui/AppDeletePopup.vue";
+import DeletePopup from "@/components/DeletePopup";
 
 export default {
   name: "App",
   components: {
-    AppDeletePopup,
+    DeletePopup,
   },
 };
 </script>

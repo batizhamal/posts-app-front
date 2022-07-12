@@ -2,11 +2,15 @@
   <div class="body">
     <div class="nav-bar"><h1>Posts</h1></div>
 
-    <AppLoader v-if="loading"></AppLoader>
+    <UILoader v-if="loading"></UILoader>
     <div class="cards" v-else>
-      <button @click="$router.push({ name: 'create' })" class="create-button">
-        +
-      </button>
+      <UIButton
+        title="+"
+        size="big"
+        color="grey"
+        class="center-button"
+        @click="$router.push({ name: 'create' })"
+      />
       <div class="flex-container">
         <Card v-for="post in $store.state.posts" :key="post.id" :post="post" />
       </div>
@@ -16,12 +20,14 @@
 
 <script>
 import Card from "./block/Card";
-import AppLoader from "@/ui/AppLoader.vue";
+import UILoader from "@/ui/UILoader.vue";
+import UIButton from "@/ui/UIButton.vue";
 
 export default {
   components: {
     Card,
-    AppLoader,
+    UILoader,
+    UIButton,
   },
   data() {
     return {
@@ -67,23 +73,11 @@ export default {
   margin: 0 auto;
 }
 
-.create-button {
-  cursor: pointer;
-  background-color: rgb(189, 196, 214);
-  color: rgb(100, 100, 100);
+.center-button {
   display: block;
-  border: none;
-  border-radius: 10px;
-  height: 50px;
-  width: 60px;
   margin: 20px auto;
-  font-size: 30px;
 }
-.create-button:hover {
-  background-color: rgb(35, 44, 70);
-  color: white;
-  transition: 0.5s;
-}
+
 .flex-container {
   display: flex;
   flex-flow: row wrap;

@@ -1,4 +1,3 @@
-<!-- TODO: Make the DeletePopup's size dynamic, so that it shrinks if the screen gets smaller -->
 <template>
   <div class="background" v-if="show">
     <div class="popup">
@@ -13,8 +12,8 @@
       </p>
       <hr class="solid" />
       <div class="buttons">
-        <button class="popup_button grey-button" @click="done">OK</button>
-        <button class="popup_button red-button" @click="cancel">Cancel</button>
+        <UIButton title="OK" :loading="loading" color="blue" @click="done" />
+        <UIButton title="Cancel" color="red" @click="cancel" />
       </div>
     </div>
   </div>
@@ -22,12 +21,16 @@
 
 <script>
 import { deletePost } from "@/api/posts";
+import UIButton from "@/ui/UIButton.vue";
+
 export default {
+  components: { UIButton },
   created() {
     this.clearQuery();
   },
   data: () => ({
     show: false,
+    loading: false,
   }),
   watch: {
     "$route.query.showDeletePopup"(val) {
@@ -46,20 +49,26 @@ export default {
         return;
       }
 
-      this.$router.push({
-        path: "/",
+      this.$router.replace({
+        path: this.$route.path,
         query: {},
       });
-      this.$router.go();
     },
     cancel() {
       this.show = false;
       this.clearQuery();
     },
-    done() {
-      this.$store.commit("deletePost", this.$route.query.postId);
-      deletePost(this.$route.query.postId);
-      this.cancel();
+    async done() {
+      try {
+        this.loading = true;
+        this.$store.commit("deletePost", this.$route.query.postId);
+        await deletePost(this.$route.query.postId);
+      } catch (error) {
+      } finally {
+        this.loading = false;
+        this.show = false;
+        this.$router.replace("/");
+      }
     },
   },
 };
@@ -110,16 +119,6 @@ export default {
   margin: auto auto;
   margin-top: 5px;
 }
-.popup_button {
-  height: 35px;
-  width: 80px;
-  border: 2px solid transparent;
-  border-radius: 10px;
-  color: black;
-  cursor: pointer;
-  display: inline-block;
-  margin: 0 5px;
-}
 .popup_button-close {
   margin-left: 460px;
   display: inline-block;
@@ -128,22 +127,6 @@ export default {
 }
 .popup_button-close:hover {
   border: 1px solid rgb(139, 139, 139);
-}
-.red-button {
-  background-color: rgb(214, 89, 89);
-}
-.grey-button {
-  background-color: rgb(189, 196, 214);
-}
-.red-button:hover {
-  background-color: rgb(149, 0, 0);
-  color: white;
-  transition: 0.5s;
-}
-.grey-button:hover {
-  background-color: rgb(35, 44, 70);
-  color: white;
-  transition: 0.5s;
 }
 hr.solid {
   border-top: 1px solid rgb(211, 211, 211);

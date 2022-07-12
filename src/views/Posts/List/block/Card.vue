@@ -3,19 +3,16 @@
     <img src="../../../../assets/letter.png" />
     <p>{{ post.title }}</p>
     <div class="card__buttons">
-      <button @click="onClickItem" class="card__button grey-button">
-        More
-      </button>
-      <button @click="deletePost(post.id)" class="card__button red-button">
-        Delete
-      </button>
+      <UIButton title="More" color="grey" @click="onClickItem" />
+      <UIButton title="Delete" color="red" @click="deletePost(post.id)" />
     </div>
   </div>
 </template>
 
 <script>
-import { deletePost } from "@/api/posts";
+import UIButton from "@/ui/UIButton.vue";
 export default {
+  components: { UIButton },
   props: {
     post: {
       type: Object,
@@ -29,8 +26,6 @@ export default {
           postId: id,
         },
       });
-      // deletePost(id);
-      // this.$store.commit("deletePost", id);
     },
     onClickItem() {
       this.$router.push({
@@ -55,36 +50,6 @@ export default {
   top: auto;
   left: 50%;
   transform: translateX(-50%);
-}
-.card__button {
-  height: 35px;
-  width: 80px;
-  border: 2px solid transparent;
-  border-radius: 10px;
-  color: black;
-  cursor: pointer;
-  display: inline-block;
-  margin: 0 5px;
-}
-/* .card__button:hover {
-  border: 2px solid rgb(35, 44, 70);
-  transition: 0.5s;
-} */
-.red-button {
-  background-color: rgb(214, 89, 89);
-}
-.grey-button {
-  background-color: rgb(189, 196, 214);
-}
-.red-button:hover {
-  background-color: rgb(149, 0, 0);
-  color: white;
-  transition: 0.5s;
-}
-.grey-button:hover {
-  background-color: rgb(35, 44, 70);
-  color: white;
-  transition: 0.5s;
 }
 img {
   width: 100px;

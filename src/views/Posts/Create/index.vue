@@ -1,4 +1,3 @@
-<!-- TODO: Make the component's size dynamic, so that it shrinks if the screen gets smaller -->
 <template>
   <div class="body">
     <div class="nav-bar"><h1>Posts</h1></div>
@@ -17,7 +16,8 @@
           ></label
         >
         <div>
-          <button @click="post">Post</button>
+          <UIButton title="Go back" color="grey" @click="$router.go(-1)" />
+          <UIButton title="Post" color="blue" @click="post" />
         </div>
       </form>
     </div>
@@ -26,7 +26,9 @@
 
 <script>
 import { addPost } from "@/api/posts";
+import UIButton from "@/ui/UIButton.vue";
 export default {
+  components: { UIButton },
   data() {
     return {
       title: "",
@@ -41,6 +43,7 @@ export default {
         .catch((err) => console.warn(err));
 
       this.$router.push("/list");
+      this.$router.go();
     },
   },
 };
@@ -83,22 +86,5 @@ h3 {
   width: unset;
   margin: 0 0.5em 0 0;
   vertical-align: middle;
-}
-button {
-  height: 35px;
-  width: 80px;
-  border: 2px solid transparent;
-  border-radius: 10px;
-  background-color: rgb(189, 196, 214);
-  color: black;
-  cursor: pointer;
-  display: block;
-  margin: 0 auto;
-  margin-top: 20px;
-}
-button:hover {
-  background-color: rgb(35, 44, 70);
-  color: white;
-  transition: 0.5s;
 }
 </style>

@@ -2,27 +2,28 @@
   <div class="body">
     <div class="nav-bar"><h1>Posts</h1></div>
     <div>
-      <AppLoader v-if="loading"></AppLoader>
+      <UILoader v-if="loading"></UILoader>
       <div v-else class="post">
-        <!-- <img src="../../../assets/letter.png" /> -->
         <div class="post__id">{{ post.id }}</div>
         <div class="post__info">
           <h3>{{ post.title }}</h3>
           <div class="post__body">{{ post.body }}</div>
         </div>
-        <!-- TODO: users' id fetch to users in future -->
-        <button class="grey-button" @click="$router.go(-1)">Go back</button>
-        <button class="red-button" @click="deletePost(post.id)">Delete</button>
+        <div>
+          <UIButton title="Go back" color="grey" @click="$router.go(-1)" />
+          <UIButton title="Delete" color="red" @click="deletePost(post.id)" />
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import AppLoader from "@/ui/AppLoader.vue";
+import UILoader from "@/ui/UILoader.vue";
+import UIButton from "@/ui/UIButton.vue";
 
 export default {
-  components: { AppLoader },
+  components: { UILoader, UIButton },
   data() {
     return {
       post: {},
@@ -36,7 +37,9 @@ export default {
       .then((result) => {
         this.post = result;
       })
-      .catch((err) => console.warn(err))
+      .catch((err) => {
+        console.warn(err);
+      })
       .finally(() => {
         this.loading = false;
       });
@@ -68,6 +71,7 @@ export default {
 .post__info {
   display: inline-block;
   width: 600px;
+  margin-bottom: 20px;
 }
 .post__body {
   border-radius: 20px;
@@ -81,33 +85,6 @@ img {
   margin-top: 20px;
   margin-left: 20px;
   display: inline-block;
-}
-button {
-  height: 35px;
-  width: 80px;
-  border: 2px solid transparent;
-  border-radius: 10px;
-  color: black;
-  cursor: pointer;
-  display: inline-block;
-  margin: 30px 20px 20px 0;
-}
-.red-button {
-  background-color: rgb(214, 89, 89);
-}
-.grey-button {
-  background-color: rgb(189, 196, 214);
-}
-.red-button:hover {
-  background-color: rgb(149, 0, 0);
-  color: white;
-  transition: 0.5s;
-}
-
-button:hover {
-  background-color: rgb(35, 44, 70);
-  color: white;
-  transition: 0.5s;
 }
 h3 {
   margin-left: 20px;
