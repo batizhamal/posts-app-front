@@ -2,7 +2,7 @@
   <div class="body">
     <div class="nav-bar"><h1>Posts</h1></div>
     <div>
-      <UILoader v-if="loading"></UILoader>
+      <UILoader v-if="loading" center></UILoader>
       <div v-else class="post">
         <div class="post__id">{{ post.id }}</div>
         <div class="post__info">

@@ -1,15 +1,14 @@
 <template>
   <div class="body">
     <div class="nav-bar"><h1>Posts</h1></div>
-
-    <UILoader v-if="loading"></UILoader>
+    <UILoader v-if="loading" center></UILoader>
     <div class="cards" v-else>
       <UIButton
         title="+"
         size="big"
         color="grey"
         class="center-button"
-        @click="$router.push({ name: 'create' })"
+        @click="createPost"
       />
       <div class="flex-container">
         <Card v-for="post in $store.state.posts" :key="post.id" :post="post" />
@@ -43,6 +42,15 @@ export default {
       .finally(() => {
         this.loading = false;
       });
+  },
+  methods: {
+    createPost() {
+      this.$router.push({
+        query: {
+          showCreatePopup: true,
+        },
+      });
+    },
   },
 };
 </script>

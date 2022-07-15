@@ -6,4 +6,13 @@ const api = axios.create({
   timeout: 60000,
 });
 
+api.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    if (error.response?.status === 412) {
+      return new Promise((_, reject) => reject(error));
+    }
+  }
+);
+
 export default api;

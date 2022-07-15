@@ -1,6 +1,7 @@
 <template>
   <button :class="classList" @click="$emit('click')">
     <span
+      v-if="!loading"
       :class="{
         button__text: true,
         button__text_hide: loading,
@@ -8,7 +9,7 @@
       >{{ title }}</span
     >
     <div v-if="loading" class="button__loader">
-      <UILoader size="5" />
+      <UILoader size="small" border="thin" />
     </div>
   </button>
 </template>
@@ -118,7 +119,7 @@ export default {
   }
 
   &__loader {
-    display: block;
+    position: relative;
   }
 }
 </style>

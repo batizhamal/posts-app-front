@@ -17,7 +17,12 @@
         >
         <div>
           <UIButton title="Go back" color="grey" @click="$router.go(-1)" />
-          <UIButton title="Post" color="blue" @click="post" />
+          <UIButton
+            title="Post"
+            color="blue"
+            @click="post"
+            :loading="loading"
+          />
         </div>
       </form>
     </div>
@@ -33,17 +38,22 @@ export default {
     return {
       title: "",
       body: "",
+      loading: false,
     };
   },
   methods: {
-    post() {
-      this.$store.commit("addPost", { title: this.title, body: this.body });
-      addPost({ title: this.title, body: this.body })
-        .then(() => {})
-        .catch((err) => console.warn(err));
-
-      this.$router.push("/list");
-      this.$router.go();
+    async post() {
+      this.loading = true;
+      try {
+        this.$store.commit("addPost", { title: this.title, body: this.body });
+        await addPost({ title: this.title, body: this.body });
+      } catch (error) {
+        console.warn(error);
+      } finally {
+        this.loading = false;
+        this.$router.push("/list");
+        this.$router.go();
+      }
     },
   },
 };

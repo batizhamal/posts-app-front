@@ -26,7 +26,11 @@ export default new Vuex.Store({
   },
   actions: {
     fetchPosts: async ({ state }) => {
-      state.posts = await getPosts();
+      try {
+        state.posts = await getPosts();
+      } catch (error) {
+        throw error;
+      }
     },
 
     fetchPost: async (_, id) => {

@@ -1,17 +1,20 @@
 <template>
   <div>
-    <DeletePopup></DeletePopup>
+    <DeletePostPopup></DeletePostPopup>
+    <ModeratePostPopup></ModeratePostPopup>
     <router-view></router-view>
   </div>
 </template>
 
 <script>
-import DeletePopup from "@/components/DeletePopup";
+import DeletePostPopup from "./views/Posts/popups/DeletePostPopup";
+import ModeratePostPopup from "./views/Posts/popups/ModeratePostPopup.vue";
 
 export default {
   name: "App",
   components: {
-    DeletePopup,
+    DeletePostPopup,
+    ModeratePostPopup,
   },
 };
 </script>
