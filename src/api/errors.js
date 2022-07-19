@@ -1,12 +1,12 @@
 import axios from "axios";
 
-const api = axios.create({
+const errorApi = axios.create({
   // baseURL: "https://jsonplaceholder.typicode.com/",
-  baseURL: "http://localhost:8080/api/",
+  baseURL: "https://httpstat.us/",
   timeout: 60000,
 });
 
-api.interceptors.response.use(
+errorApi.interceptors.response.use(
   (response) => response,
   (error) => {
     if (error.response?.status === 401) {
@@ -15,4 +15,4 @@ api.interceptors.response.use(
   }
 );
 
-export default api;
+export default errorApi;

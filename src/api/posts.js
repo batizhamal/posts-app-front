@@ -1,4 +1,5 @@
 import api from "@/api";
+import errorApi from "@/api/errors";
 
 export const getPosts = async () => {
   try {
@@ -28,7 +29,8 @@ export const addPost = async (post) => {
 
 export const deletePost = async (id) => {
   try {
-    await api.delete(`/posts/${id}`);
+    // await api.delete(`/posts/${id}`);
+    await errorApi.delete(`/401`);
   } catch (error) {
     throw error.response;
   }

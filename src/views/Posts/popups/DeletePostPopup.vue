@@ -45,13 +45,23 @@ export default {
     async done() {
       this.loading = true;
       try {
-        this.$store.commit("deletePost", this.$route.query.postId);
+        console.log("inside try");
         await deletePost(this.$route.query.postId);
+        // this.$store.commit("deletePost", this.$route.query.postId);
 
         this.show = false;
         this.$router.replace("/");
       } catch (error) {
-        this.$notify({ text: "" });
+        console.log("inside catch");
+
+        this.show = false;
+        this.clearQuery();
+
+        this.$notify({
+          warn: true,
+          title: "Delete post",
+          text: "Deleting post was unsuccessfull",
+        });
       } finally {
         this.loading = false;
       }

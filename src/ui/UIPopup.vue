@@ -63,7 +63,7 @@ export default {
   max-height: 90%;
   max-width: 90%;
   background-color: white;
-  border-radius: rem(4);
+  border-radius: 1rem;
   overflow: hidden;
   box-shadow: 4px rgba(0, 0, 0, 0.6);
 
