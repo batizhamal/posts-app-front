@@ -4,6 +4,7 @@
     <p>{{ post.title }}</p>
     <div class="card__buttons">
       <UIButton title="More" color="grey" @click="onClickItem" />
+      <UIButton title="Edit" color="blue" @click="editPost" />
       <UIButton title="Delete" color="red" @click="deletePost(post.id)" />
     </div>
   </div>
@@ -19,6 +20,16 @@ export default {
     },
   },
   methods: {
+    editPost() {
+      this.$router.push({
+        query: {
+          showCreatePopup: true,
+        },
+        params: {
+          post: this.post,
+        },
+      });
+    },
     deletePost(id) {
       this.$router.push({
         query: {
@@ -40,7 +51,7 @@ export default {
 .card {
   background-color: rgb(233, 233, 233);
   border-radius: 20px;
-  width: 400px;
+  width: 550px;
   height: 300px;
   margin: 10px 10px;
   position: relative;

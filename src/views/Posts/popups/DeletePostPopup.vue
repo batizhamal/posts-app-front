@@ -47,11 +47,13 @@ export default {
       try {
         this.$store.commit("deletePost", this.$route.query.postId);
         await deletePost(this.$route.query.postId);
-      } catch (error) {
-      } finally {
-        this.loading = false;
+
         this.show = false;
         this.$router.replace("/");
+      } catch (error) {
+        this.$notify({ text: "" });
+      } finally {
+        this.loading = false;
       }
     },
   },

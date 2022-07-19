@@ -49,6 +49,7 @@ export default {
         query: {
           showCreatePopup: true,
         },
+        params: {},
       });
     },
   },

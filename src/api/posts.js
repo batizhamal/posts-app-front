@@ -33,3 +33,11 @@ export const deletePost = async (id) => {
     throw error.response;
   }
 };
+
+export const editPost = async (id, post) => {
+  try {
+    await api.put(`/posts/${id}`, post);
+  } catch (error) {
+    throw error.response;
+  }
+};
