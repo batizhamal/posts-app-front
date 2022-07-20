@@ -1,13 +1,15 @@
 <template>
   <div class="body">
-    <div class="nav-bar"><h1>Posts</h1></div>
-    <UIButton
-      title="+"
-      size="big"
-      color="grey"
-      class="center-button"
-      @click="createPost"
-    />
+    <div class="nav-bar">
+      <h1>Posts</h1>
+      <UIButton
+        icon="https://super.so/icon/dark/plus.svg"
+        size="big"
+        color="white"
+        @click="createPost"
+        class="nav-bar__button"
+      />
+    </div>
     <UISearchbar @search="searchByTitle" />
     <UILoader v-if="loading" center></UILoader>
     <div class="cards" v-else>
@@ -68,7 +70,7 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
 .body {
   font-size: 16px;
   overflow: hidden;
@@ -85,18 +87,30 @@ export default {
 }
 
 .nav-bar {
+  $self: &;
+
+  position: relative;
   background: rgb(35, 44, 70);
   color: rgb(255, 255, 255);
   height: 60px;
   width: 100%;
   text-align: center;
-  display: table;
-  margin: 0 auto;
+  margin: 0 auto 20px;
+
+  &__button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 2rem;
+  }
 }
 
-.center-button {
-  display: block;
-  margin: 20px auto;
+.nav-bar > h1 {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  margin: 0;
 }
 
 .flex-container {

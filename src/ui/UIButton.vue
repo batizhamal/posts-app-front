@@ -1,13 +1,21 @@
 <template>
   <button :class="classList" @click="$emit('click')">
     <span
-      v-if="!loading"
+      v-if="!loading && title"
       :class="{
         button__text: true,
         button__text_hide: loading,
       }"
       >{{ title }}</span
     >
+    <img
+      v-if="!loading && icon"
+      :src="icon"
+      :class="{
+        button__icon: true,
+        button__icon_hide: loading,
+      }"
+    />
     <div v-if="loading" class="button__loader">
       <UILoader size="small" border="thin" />
     </div>
@@ -22,7 +30,9 @@ export default {
   props: {
     title: {
       type: String,
-      default: () => "Click",
+    },
+    icon: {
+      type: String,
     },
     loading: {
       type: Boolean,
@@ -42,6 +52,8 @@ export default {
         button_grey: this.color == "grey",
         button_red: this.color == "red",
         button_blue: this.color == "blue",
+        button_white: this.color == "white",
+        button_transparent: this.color == "transparent",
         button_small: this.size == "small",
         button_big: this.size == "big",
       };
@@ -95,9 +107,15 @@ export default {
     }
   }
 
-  &_small {
-    width: rem(16);
-    height: rem(16);
+  &_white {
+    background-color: rgba(255, 255, 255, 0.5);
+    &:hover {
+      background-color: rgb(255, 255, 255);
+      transition: 0.5s;
+    }
+  }
+
+  &_transparent {
     background-color: transparent;
     border-color: transparent;
     &:hover {
@@ -105,14 +123,32 @@ export default {
     }
   }
 
+  &_small {
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 0.1rem;
+  }
+
   &_big {
-    width: rem(32);
-    height: rem(32);
+    width: 2.5rem;
+    height: 2.5rem;
   }
 
   &__text {
     position: relative;
     transition: opacity 0.1s ease-in-out;
+    &_hide {
+      opacity: 0;
+    }
+  }
+  &__icon {
+    position: absolute;
+    top: 50%;
+    right: 50%;
+    transform: translate(50%, -50%);
+    transition: opacity 0.1s ease-in-out;
+    width: 16px;
+    height: 16px;
     &_hide {
       opacity: 0;
     }

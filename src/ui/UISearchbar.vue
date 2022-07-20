@@ -10,10 +10,7 @@
           @keyup="onChange"
           placeholder="Search for the post by title..."
         />
-        <img
-          class="icon"
-          src="https://hackr.io/assets/images/header-icons/search-header.svg"
-        />
+        <img class="icon" src="https://super.so/icon/dark/search.svg" />
       </div>
     </div>
   </div>

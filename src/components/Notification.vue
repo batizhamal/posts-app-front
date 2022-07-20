@@ -1,8 +1,8 @@
 <template>
   <div>
     <div class="notification">
-      <div>
-        <p class="notification__title">{{ title }}</p>
+      <div class="notification__content">
+        <p :class="titleClass">{{ title }}</p>
         <p class="notification__text">{{ text }}</p>
       </div>
       <UIButton
@@ -31,11 +31,21 @@ export default {
       default: false,
     },
   },
+  computed: {
+    titleClass() {
+      return {
+        notification__title: true,
+        notification__title_red: this.warn,
+      };
+    },
+  },
 };
 </script>
 
 <style lang="scss" scoped>
 .notification {
+  $self: &;
+
   z-index: 32;
   position: absolute;
   top: 0;
@@ -52,22 +62,35 @@ export default {
   box-shadow: 0px 0px 5px rgba(138, 123, 123, 0.3);
   align-items: center;
   justify-content: center;
-}
-.notification__button {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 10%;
-  height: 100%;
-  border-radius: 0;
-  margin: 0;
-}
-.notification__text,
-.notification__title {
-  font-size: 0.8rem;
-  margin: 5px 10px;
-}
-.notification__title {
-  font-weight: bold;
+
+  &__button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 10%;
+    height: 100%;
+    border-radius: 0;
+    margin: 0;
+  }
+
+  &__content {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  &__text,
+  &__title {
+    font-size: 0.8rem;
+    margin: 5px 10px;
+  }
+
+  &__title {
+    font-weight: bold;
+
+    &_red {
+      color: rgb(149, 0, 0);
+    }
+  }
 }
 </style>

@@ -45,7 +45,6 @@ export default {
     async done() {
       this.loading = true;
       try {
-        console.log("inside try");
         await deletePost(this.$route.query.postId);
         // this.$store.commit("deletePost", this.$route.query.postId);
 
@@ -53,8 +52,6 @@ export default {
         this.$router.replace("/");
         this.$router.go();
       } catch (error) {
-        console.log("inside catch");
-
         this.show = false;
         this.clearQuery();
 

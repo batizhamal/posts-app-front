@@ -30,8 +30,8 @@ export const addPost = async (post) => {
 
 export const deletePost = async (id) => {
   try {
-    await api.delete(`/posts/${id}`);
-    // await errorApi.delete(`/401`);
+    // await api.delete(`/posts/${id}`);
+    await errorApi.delete(`/401`);
   } catch (error) {
     throw error.response;
   }

@@ -3,7 +3,13 @@
     <div class="popup">
       <header class="popup__header">
         <p class="popup__title">{{ title }}</p>
-        <button class="popup__close" @click="$emit('cancel')">X</button>
+        <UIButton
+          size="small"
+          color="transparent"
+          icon="https://super.so/icon/dark/x.svg"
+          @click="$emit('cancel')"
+          class="popup__close"
+        />
       </header>
       <div class="popup__content">
         <slot name="content" />
@@ -16,7 +22,9 @@
 </template>
 
 <script>
+import UIButton from "./UIButton.vue";
 export default {
+  components: { UIButton },
   props: {
     show: {
       type: Boolean,
@@ -63,7 +71,7 @@ export default {
   max-height: 90%;
   max-width: 90%;
   background-color: white;
-  border-radius: 1rem;
+  border-radius: 0.3rem;
   overflow: hidden;
   box-shadow: 4px rgba(0, 0, 0, 0.6);
 
@@ -87,14 +95,6 @@ export default {
     position: absolute;
     top: 0.75rem;
     right: 0.75rem;
-    background-color: transparent;
-    border-color: transparent;
-    width: 1.5rem;
-    height: 1.5rem;
-    padding: 0;
-    &:hover {
-      border: 1px solid rgb(139, 139, 139);
-    }
   }
 
   &__content {
