@@ -80,10 +80,13 @@ export default {
         this.$router.replace("/");
         this.$router.go();
       } catch (error) {
+        this.show = false;
+        this.clearQuery();
+
         this.$notify({
           warn: true,
           title: this.form.id ? "Edit post" : "Create post",
-          text: "Unsuccessuful",
+          text: "Request unsuccessuful",
         });
       } finally {
         this.loading = false;

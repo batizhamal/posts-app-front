@@ -1,17 +1,18 @@
 <template>
   <div class="body">
     <div class="nav-bar"><h1>Posts</h1></div>
+    <UIButton
+      title="+"
+      size="big"
+      color="grey"
+      class="center-button"
+      @click="createPost"
+    />
+    <UISearchbar @search="searchByTitle" />
     <UILoader v-if="loading" center></UILoader>
     <div class="cards" v-else>
-      <UIButton
-        title="+"
-        size="big"
-        color="grey"
-        class="center-button"
-        @click="createPost"
-      />
       <div class="flex-container">
-        <Card v-for="post in $store.state.posts" :key="post.id" :post="post" />
+        <Card v-for="post in posts" :key="post.id" :post="post" />
       </div>
     </div>
   </div>
@@ -21,27 +22,25 @@
 import Card from "./block/Card";
 import UILoader from "@/ui/UILoader.vue";
 import UIButton from "@/ui/UIButton.vue";
+import UISearchbar from "@/ui/UISearchbar.vue";
+import { getPosts } from "@/api/posts";
+import { debounce } from "lodash";
 
 export default {
   components: {
     Card,
     UILoader,
     UIButton,
+    UISearchbar,
   },
   data() {
     return {
       loading: false,
+      posts: [],
     };
   },
   created() {
-    this.loading = true;
-    this.$store
-      .dispatch("fetchPosts")
-      // .then(() => {})
-      .catch((err) => console.warn(err))
-      .finally(() => {
-        this.loading = false;
-      });
+    this.getPosts();
   },
   methods: {
     createPost() {
@@ -52,6 +51,19 @@ export default {
         params: {},
       });
     },
+    async getPosts(title = null) {
+      this.loading = true;
+      try {
+        this.posts = await getPosts({ title });
+      } catch (error) {
+        throw error;
+      } finally {
+        this.loading = false;
+      }
+    },
+    searchByTitle: debounce(function (title) {
+      this.getPosts(title);
+    }, 1000),
   },
 };
 </script>

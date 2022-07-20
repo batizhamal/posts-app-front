@@ -51,6 +51,7 @@ export default {
 
         this.show = false;
         this.$router.replace("/");
+        this.$router.go();
       } catch (error) {
         console.log("inside catch");
 
