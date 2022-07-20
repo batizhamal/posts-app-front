@@ -62,7 +62,8 @@ export default {
 }
 .icon {
   position: absolute;
-  left: 25px;
+  left: 0;
+  margin: 0 1rem;
   top: 50%;
   transform: translateY(-50%) scale(1.1);
   opacity: 0.5;

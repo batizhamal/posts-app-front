@@ -4,6 +4,7 @@ import PostList from "./../views/Posts/List";
 import PostInfo from "./../views/Posts/Info";
 import CreatePost from "./../views/Posts/Create";
 import store from "@/store";
+import { getPosts } from "@/api/posts";
 
 Vue.use(VueRouter);
 
@@ -25,9 +26,6 @@ export default new VueRouter({
           path: ":id",
           name: "info",
           component: PostInfo,
-          beforeEnter(to, _, next) {
-            !idExists(to.params.id) ? next("/") : next();
-          },
         },
         {
           path: "new",
@@ -38,7 +36,3 @@ export default new VueRouter({
     },
   ],
 });
-
-function idExists(id) {
-  return store.state.posts.find((post) => post.id == id);
-}

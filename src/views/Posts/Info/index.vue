@@ -21,6 +21,7 @@
 <script>
 import UILoader from "@/ui/UILoader.vue";
 import UIButton from "@/ui/UIButton.vue";
+import { getPostById } from "@/api/posts";
 
 export default {
   components: { UILoader, UIButton },
@@ -30,19 +31,15 @@ export default {
       loading: false,
     };
   },
-  created() {
+  async created() {
     this.loading = true;
-    this.$store
-      .dispatch("fetchPost", this.$route.params.id)
-      .then((result) => {
-        this.post = result;
-      })
-      .catch((err) => {
-        console.warn(err);
-      })
-      .finally(() => {
-        this.loading = false;
-      });
+    try {
+      this.post = await getPostById(this.$route.params.id);
+    } catch (error) {
+      throw error;
+    } finally {
+      this.loading = false;
+    }
   },
   methods: {
     deletePost(id) {
