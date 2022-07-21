@@ -1,13 +1,5 @@
 <template>
   <button :class="classList" @click="$emit('click')">
-    <span
-      v-if="!loading && title"
-      :class="{
-        button__text: true,
-        button__text_hide: loading,
-      }"
-      >{{ title }}</span
-    >
     <img
       v-if="!loading && icon"
       :src="icon"
@@ -16,6 +8,14 @@
         button__icon_hide: loading,
       }"
     />
+    <span
+      v-if="!loading && title"
+      :class="{
+        button__text: true,
+        button__text_hide: loading,
+      }"
+      >{{ title }}</span
+    >
     <div v-if="loading" class="button__loader">
       <UILoader size="small" border="thin" />
     </div>
@@ -42,7 +42,10 @@ export default {
       type: String,
       default: "grey",
     },
-    size: String,
+    size: {
+      type: String,
+      default: "primary",
+    },
   },
   computed: {
     classList() {
@@ -56,6 +59,8 @@ export default {
         button_transparent: this.color == "transparent",
         button_small: this.size == "small",
         button_big: this.size == "big",
+        button_square: this.size == "square",
+        button_primary: this.size == "primary",
       };
     },
   },
@@ -66,17 +71,16 @@ export default {
 .button {
   $self: &;
 
-  //   position: relative;
-  //   display: inline-flex;
+  position: relative;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
   text-align: center;
-  height: 35px;
-  width: 80px;
+  height: 2.25rem;
   max-width: 100%;
   max-height: 100%;
   border-color: transparent;
-  border-radius: 10px;
+  border-radius: 0.25rem;
   margin: 0 5px;
   cursor: pointer;
 
@@ -123,6 +127,11 @@ export default {
     }
   }
 
+  &_primary {
+    min-width: 80px;
+    width: auto;
+  }
+
   &_small {
     width: 1.5rem;
     height: 1.5rem;
@@ -134,21 +143,23 @@ export default {
     height: 2.5rem;
   }
 
+  &_square {
+    width: 2.25rem;
+    height: 2.25rem;
+  }
+
   &__text {
     position: relative;
     transition: opacity 0.1s ease-in-out;
+    white-space: nowrap;
     &_hide {
       opacity: 0;
     }
   }
   &__icon {
-    position: absolute;
-    top: 50%;
-    right: 50%;
-    transform: translate(50%, -50%);
-    transition: opacity 0.1s ease-in-out;
     width: 16px;
     height: 16px;
+    padding: 3px;
     &_hide {
       opacity: 0;
     }

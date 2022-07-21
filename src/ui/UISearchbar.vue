@@ -1,23 +1,29 @@
 <template>
-  <div class="search-holder">
-    <div class="search-bar">
-      <div class="form-holder">
-        <input
-          type="text"
-          v-model="title"
-          class="form-control"
-          @change="onChange"
-          @keyup="onChange"
-          placeholder="Search for the post by title..."
-        />
-        <img class="icon" src="https://super.so/icon/dark/search.svg" />
-      </div>
+  <div class="search-bar">
+    <div class="search-bar__input">
+      <input
+        type="text"
+        v-model="title"
+        @change="onChange"
+        @keyup="onChange"
+        placeholder="Search for the post by title..."
+      />
+    </div>
+    <div class="search-bar__button">
+      <UIButton
+        @click="onChange"
+        size="square"
+        color="grey"
+        icon="https://super.so/icon/dark/search.svg"
+      />
     </div>
   </div>
 </template>
 
 <script>
+import UIButton from "./UIButton.vue";
 export default {
+  components: { UIButton },
   data: () => {
     return {
       title: "",
@@ -32,40 +38,63 @@ export default {
 </script>
 
 <style lang="scss">
-.search-holder {
-  display: block;
-  margin: 0 auto;
-  width: 60%;
-  padding: 0 15px;
-  text-align: center;
-}
-
 .search-bar {
-  .form-holder {
+  $self: &;
+
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: start;
+  justify-content: stretch;
+  color: #333;
+  width: 100rem;
+  max-width: 100%;
+  height: 2.25rem;
+  margin-left: 5px;
+
+  &__input {
     position: relative;
+    height: 2.25rem;
+    width: 100%;
+    max-width: 100%;
   }
 
-  .form-control {
-    display: block;
-    height: 34px;
-    padding: 6px 36px;
-    font-size: 14px;
-    color: #555;
-    background-color: #fff;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  &__button {
+    border-radius: 0.25rem;
+    border: 0.06rem solid #d4d4d4;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    border-left: 0;
+    position: relative;
+    display: flex;
+    align-items: center;
   }
 }
-.icon {
-  position: absolute;
-  left: 0;
-  margin: 0 1rem;
-  top: 50%;
-  transform: translateY(-50%) scale(1.1);
-  opacity: 0.5;
-  width: 17px;
-  height: 17px;
-  z-index: 2;
+
+.search-bar__button > button {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  margin: 0;
+}
+
+.search-bar__input > input {
+  border-radius: 0.25rem;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border: 0.06rem solid #d4d4d4;
+  height: 2.25rem;
+  padding: 0 0.6rem;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: flex-start;
+  justify-content: stretch;
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+
+  &:focus {
+    outline: none;
+  }
 }
 </style>

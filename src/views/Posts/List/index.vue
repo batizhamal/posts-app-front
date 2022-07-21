@@ -2,15 +2,17 @@
   <div class="body">
     <div class="nav-bar">
       <h1>Posts</h1>
+    </div>
+    <UIPanel>
       <UIButton
         icon="https://super.so/icon/dark/plus.svg"
-        size="big"
-        color="white"
+        title="Create"
         @click="createPost"
-        class="nav-bar__button"
       />
-    </div>
-    <UISearchbar @search="searchByTitle" />
+      <UISpacer />
+      <UISearchbar @search="searchByTitle" />
+    </UIPanel>
+
     <UILoader v-if="loading" center></UILoader>
     <div class="cards" v-else>
       <div class="flex-container">
@@ -27,6 +29,8 @@ import UIButton from "@/ui/UIButton.vue";
 import UISearchbar from "@/ui/UISearchbar.vue";
 import { getPosts } from "@/api/posts";
 import { debounce } from "lodash";
+import UIPanel from "@/ui/UIPanel.vue";
+import UISpacer from "@/ui/UISpacer.vue";
 
 export default {
   components: {
@@ -34,6 +38,8 @@ export default {
     UILoader,
     UIButton,
     UISearchbar,
+    UIPanel,
+    UISpacer,
   },
   data() {
     return {
@@ -82,8 +88,33 @@ export default {
 }
 
 .cards {
-  overflow: scroll;
-  height: 100%;
+  overflow: auto;
+  position: absolute;
+  top: 140px;
+  bottom: 0;
+}
+
+::-webkit-scrollbar {
+  background-color: transparent;
+  width: 1rem;
+}
+
+::-webkit-scrollbar-button {
+  display: none;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #babac0;
+  border-radius: 1rem;
+  border: 0.1rem solid #ffffff;
+}
+
+.flex-container {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: stretch;
+  flex-basis: 200px;
 }
 
 .nav-bar {
@@ -94,8 +125,8 @@ export default {
   color: rgb(255, 255, 255);
   height: 60px;
   width: 100%;
-  text-align: center;
-  margin: 0 auto 20px;
+  text-align: left;
+  margin: 0 auto;
 
   &__button {
     position: absolute;
@@ -107,20 +138,12 @@ export default {
 
 .nav-bar > h1 {
   position: absolute;
-  left: 50%;
+  left: 21px;
   top: 50%;
-  transform: translate(-50%, -50%);
+  transform: translateY(-50%);
   margin: 0;
 }
 
-.flex-container {
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: center;
-  align-items: stretch;
-  flex-basis: 200px;
-  margin-bottom: 100px;
-}
 h2 {
   margin-top: 6px;
 }
