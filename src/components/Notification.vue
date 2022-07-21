@@ -8,6 +8,7 @@
       <UIButton
         class="notification__button"
         :color="warn ? 'red' : 'blue'"
+        size="square"
         title="X"
         @click="$emit('close')"
       ></UIButton>
