@@ -1,5 +1,5 @@
 <template>
-  <div class="body">
+  <div class="root">
     <div class="nav-bar"><h1>Posts</h1></div>
     <div class="background">
       <h3>Please fill out the fields to make a post</h3>

@@ -1,6 +1,6 @@
 <template>
-  <div class="body">
-    <div class="nav-bar"><h1>Posts</h1></div>
+  <div class="root">
+    <div class="nav-bar"><h1>Info</h1></div>
     <div>
       <UILoader v-if="loading" center></UILoader>
       <div v-else class="post">
